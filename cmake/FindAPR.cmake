@@ -27,17 +27,23 @@
 # APR first.
 
 FIND_PATH(APR_INCLUDE_DIR apr.h
-/usr/local/include/apr-1
-/usr/local/include/apr-1.0
-/usr/include/apr-1
-/usr/include/apr-1.0
-/usr/local/apr/include/apr-1
+  /opt/homebrew/Cellar/apr/1.5.0/include/apr-1
+  /usr/local/include/apr-1
+  /usr/local/include/apr-1.0
+  /usr/include/apr-1
+  /usr/include/apr-1.0
+  /usr/local/apr/include/apr-1
 )
 
 SET(APR_NAMES ${APR_NAMES} apr-1)
 FIND_LIBRARY(APR_LIBRARY
   NAMES ${APR_NAMES}
-  PATHS /usr/lib /usr/local/lib /usr/local/apr/lib
+  HINTS
+    /opt/homebrew/Cellar/apr/1.5.0/lib
+  PATHS
+    /usr/lib
+    /usr/local/lib
+    /usr/local/apr/lib
   )
 
 IF (APR_LIBRARY AND APR_INCLUDE_DIR)
@@ -50,7 +56,8 @@ ENDIF (APR_LIBRARY AND APR_INCLUDE_DIR)
 
 IF (APR_FOUND)
    IF (NOT APR_FIND_QUIETLY)
-      MESSAGE(STATUS "Found APR: ${APR_LIBRARIES}")
+      MESSAGE(STATUS "Found APR headers: ${APR_INCLUDE_DIR}")
+      MESSAGE(STATUS "Found APR library: ${APR_LIBRARIES}")
    ENDIF (NOT APR_FIND_QUIETLY)
 ELSE (APR_FOUND)
    IF (APR_FIND_REQUIRED)
@@ -70,17 +77,23 @@ MARK_AS_ADVANCED(
 # Next, APRUTIL.
 
 FIND_PATH(APRUTIL_INCLUDE_DIR apu.h
-/usr/local/include/apr-1
-/usr/local/include/apr-1.0
-/usr/include/apr-1
-/usr/include/apr-1.0
-/usr/local/apr/include/apr-1
+  /opt/homebrew/Cellar/apr-util/1.5.3/include/apr-1
+  /usr/local/include/apr-1
+  /usr/local/include/apr-1.0
+  /usr/include/apr-1
+  /usr/include/apr-1.0
+  /usr/local/apr/include/apr-1
 )
 
 SET(APRUTIL_NAMES ${APRUTIL_NAMES} aprutil-1)
 FIND_LIBRARY(APRUTIL_LIBRARY
   NAMES ${APRUTIL_NAMES}
-  PATHS /usr/lib /usr/local/lib /usr/local/apr/lib
+  HINTS
+    /opt/homebrew/Cellar/apr-util/1.5.3/lib
+  PATHS
+    /usr/lib
+    /usr/local/lib
+    /usr/local/apr/lib
   )
 
 IF (APRUTIL_LIBRARY AND APRUTIL_INCLUDE_DIR)
@@ -93,7 +106,8 @@ ENDIF (APRUTIL_LIBRARY AND APRUTIL_INCLUDE_DIR)
 
 IF (APRUTIL_FOUND)
    IF (NOT APRUTIL_FIND_QUIETLY)
-      MESSAGE(STATUS "Found APRUTIL: ${APRUTIL_LIBRARIES}")
+      MESSAGE(STATUS "Found APRUTIL headers: ${APRUTIL_INCLUDE_DIR}")
+      MESSAGE(STATUS "Found APRUTIL library: ${APRUTIL_LIBRARIES}")
    ENDIF (NOT APRUTIL_FIND_QUIETLY)
 ELSE (APRUTIL_FOUND)
    IF (APRUTIL_FIND_REQUIRED)
