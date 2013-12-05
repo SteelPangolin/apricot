@@ -27,7 +27,7 @@
 # APR first.
 
 FIND_PATH(APR_INCLUDE_DIR apr.h
-  /opt/homebrew/Cellar/apr/1.5.0/include/apr-1
+  /opt/homebrew/opt/apr/include/apr-1
   /usr/local/include/apr-1
   /usr/local/include/apr-1.0
   /usr/include/apr-1
@@ -39,7 +39,7 @@ SET(APR_NAMES ${APR_NAMES} apr-1)
 FIND_LIBRARY(APR_LIBRARY
   NAMES ${APR_NAMES}
   HINTS
-    /opt/homebrew/Cellar/apr/1.5.0/lib
+    /opt/homebrew/opt/apr/lib
   PATHS
     /usr/lib
     /usr/local/lib
@@ -77,7 +77,7 @@ MARK_AS_ADVANCED(
 # Next, APRUTIL.
 
 FIND_PATH(APRUTIL_INCLUDE_DIR apu.h
-  /opt/homebrew/Cellar/apr-util/1.5.3/include/apr-1
+  /opt/homebrew/opt/apr-util/include/apr-1
   /usr/local/include/apr-1
   /usr/local/include/apr-1.0
   /usr/include/apr-1
@@ -89,7 +89,7 @@ SET(APRUTIL_NAMES ${APRUTIL_NAMES} aprutil-1)
 FIND_LIBRARY(APRUTIL_LIBRARY
   NAMES ${APRUTIL_NAMES}
   HINTS
-    /opt/homebrew/Cellar/apr-util/1.5.3/lib
+    /opt/homebrew/opt/apr-util/lib
   PATHS
     /usr/lib
     /usr/local/lib
