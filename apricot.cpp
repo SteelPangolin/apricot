@@ -69,12 +69,12 @@ int main(int argc, const char * const * argv)
     // show some MySQL info
     int dberr;
     const char *query = "select CURRENT_USER() as user, VERSION() as version, DATABASE() as dbname";
-    apr_dbd_results_t *results;
+    apr_dbd_results_t *results = NULL;
     dberr = apr_dbd_select(driver, pool, cxn, &results, query, 0 /* don't need random row access */);
     print_dbd_err(driver, cxn, dberr);
     
     int n_cols = apr_dbd_num_cols(driver, results);
-    apr_dbd_row_t *row;
+    apr_dbd_row_t *row = NULL;
     while (!apr_dbd_get_row(driver, pool, results, &row, -1 /* next row */)) {
         for (int col = 0; col < n_cols; col++) {
             const char *name  = apr_dbd_get_name (driver, results, col);
@@ -88,6 +88,5 @@ int main(int argc, const char * const * argv)
     rv = apr_dbd_close(driver, cxn);
     exit_on_err(rv, "apr_dbd_close");
     
-    printf("hello world\n");
     exit(0);
 }
